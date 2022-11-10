@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "outDir": "dist",
+    "rootDir": "src",
+    "removeComments": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "@UTILS": ["utils/index.ts"],
+      "@MIDDLEWARES": ["middlewares/index.ts"],
+      "@ROUTES/*": ["routes/*"],
+      "@ENTITIES/*": ["entities/*"],
+      "@SERVICES/*": ["services/*"],
+    },
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
