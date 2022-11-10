@@ -7,7 +7,7 @@ export async function loadConfig(): Promise<void> {
   const NODE_ENV = process.env.NODE_ENV as TEnv
   const result = config({ path: resolve('env', `${NODE_ENV}.env`) })
 
-  if (result.error) throw new Error(`ERROR-ENV: ${result.error.message}`)
+  if (result.error) apiLogger('ENV', result.error.message)
   else apiLogger('ENV', `environment "${NODE_ENV}" loaded successfully`)
 }
 

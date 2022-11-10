@@ -1,6 +1,7 @@
 import { Router, Response } from 'express'
 import fs from 'fs'
 import { resolve } from 'path'
+import { getGamesAmerica } from 'nintendo-switch-eshop'
 
 const router = Router()
 
@@ -15,5 +16,24 @@ router.get('/', (_, res: Response): void => {
     date: new Date().toISOString()
   })
 })
+
+router.get(
+  '/games',
+  async (_, res: Response): Promise<void> => {
+    try {
+      const games = await getGamesAmerica()
+      res.status(200).json({
+        data: JSON.stringify(games),
+        error: null
+      })
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({
+        data: null,
+        error
+      })
+    }
+  }
+)
 
 export { router as mainRoutes }
