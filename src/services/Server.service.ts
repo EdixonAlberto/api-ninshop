@@ -1,7 +1,8 @@
 import express from 'express'
 import { apiLogger, getConfig } from '@UTILS'
-import { requestDebug, errorCatch } from '@MIDDLEWARES'
+import { requestDebug, errorCatch, corsMiddleware } from '@MIDDLEWARES'
 import { mainRoutes } from '@ROUTES/main.routes'
+import cors from 'cors'
 
 export class ServerService {
   private readonly PORT_HTTP = getConfig().portHttp || 3000
@@ -14,6 +15,7 @@ export class ServerService {
 
   private middlewares(): void {
     this.app.use('*', requestDebug)
+    this.app.use(corsMiddleware())
     this.app.use(express.json())
   }
 

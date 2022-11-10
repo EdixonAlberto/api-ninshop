@@ -16,6 +16,7 @@ export const getConfig = (): TConfig => {
 
   return {
     portHttp: Number(ENV.PORT_HTTP) || 3000,
-    debug: ENV.DEBUG === 'true'
+    debug: ENV.DEBUG === 'true',
+    whiteList: (ENV.WHITE_LIST as string).split(',')
   }
 }
