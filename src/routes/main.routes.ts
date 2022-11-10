@@ -21,9 +21,9 @@ router.get(
   '/games',
   async (_, res: Response): Promise<void> => {
     try {
-      const games = await getGamesAmerica()
+      const data = await getGamesAmerica()
       res.status(200).json({
-        data: JSON.stringify(games),
+        data,
         error: null
       })
     } catch (error) {
