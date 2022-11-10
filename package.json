@@ -18,7 +18,8 @@
     "lint": "prettier --write ./src/**/*.ts",
     "build": "tsc && tsc-alias",
     "dev": "cross-env NODE_ENV=development nodemon --config",
-    "start": "yarn build && cross-env NODE_ENV=production node dist"
+    "start": "yarn build && cross-env NODE_ENV=production node dist",
+    "start:heroku": "node dist"
   },
   "nodemonConfig": {
     "ext": ".ts,.env",

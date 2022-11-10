@@ -7,4 +7,3 @@ build/
 # FILES
 *.env
 *.log
-Procfile

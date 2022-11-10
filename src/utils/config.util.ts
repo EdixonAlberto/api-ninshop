@@ -15,8 +15,8 @@ export const getConfig = (): TConfig => {
   const ENV: NodeJS.ProcessEnv = process.env
 
   return {
-    portHttp: Number(ENV.PORT_HTTP) || 3000,
+    portHttp: Number(ENV.PORT) || 3000,
     debug: ENV.DEBUG === 'true',
-    whiteList: (ENV.WHITE_LIST as string).split(',')
+    whiteList: (ENV.WHITE_LIST as string).split(',') || []
   }
 }

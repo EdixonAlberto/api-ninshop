@@ -5,7 +5,7 @@ import { mainRoutes } from '@ROUTES/main.routes'
 import cors from 'cors'
 
 export class ServerService {
-  private readonly PORT_HTTP = getConfig().portHttp || 3000
+  private readonly PORT_HTTP = getConfig().portHttp
   private app = express()
 
   constructor() {
