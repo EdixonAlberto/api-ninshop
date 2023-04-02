@@ -1,7 +1,7 @@
 import { Router, Response } from 'express'
-import fs from 'fs'
 import { resolve } from 'path'
-import { getGamesAmerica } from 'nintendo-switch-eshop'
+import fs from 'fs'
+import { DatabaseService } from '@SERVICES/Database.service'
 
 const router = Router()
 
@@ -17,11 +17,31 @@ router.get('/', (_, res: Response): void => {
   })
 })
 
+router.post(
+  '/populate_database',
+  async (_, res: Response): Promise<void> => {
+    const result = await new DatabaseService().populate()
+
+    if (typeof result === 'string') {
+      res.status(500).json({
+        data: null,
+        error: result
+      })
+      return
+    }
+
+    res.status(200).json({
+      data: 'JSON data generated',
+      error: null
+    })
+  }
+)
+
 router.get(
   '/games',
   async (_, res: Response): Promise<void> => {
     try {
-      const data = await getGamesAmerica()
+      const data = JSON.parse(fs.readFileSync(resolve('src', 'database', 'games.json'), 'utf8'))
       res.status(200).json({
         data,
         error: null
